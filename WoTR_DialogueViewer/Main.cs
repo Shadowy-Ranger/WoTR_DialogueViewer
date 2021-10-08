@@ -1,40 +1,45 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Reflection;
 using UnityModManagerNet;
-using HarmonyLib;
-using Newtonsoft.Json.Linq;
+using UnityEngine;
 
 namespace WoTR_DialogueViewer
 {
+#if DEBUG
+    [EnableReloading]
+#endif  
     public class Main
     {
-        [Conditional("DEBUG")]
-        internal static void Log(string msg) => Logger.Log(msg);
-        internal static void Error(Exception ex) => Logger?.Error(ex.ToString());
-        internal static void Error(string msg) => Logger?.Error(msg);
-        internal static UnityModManager.ModEntry.ModLogger Logger { get; private set; }
-
-        internal static bool Load(UnityModManager.ModEntry modEntry)
+        public static Settings Settings;
+        public static bool Enabled;
+        static bool Load(UnityModManager.ModEntry modEntry)
         {
-            try
-            {
-                Logger = modEntry.Logger;
-
-                var harmony = new Harmony(modEntry.Info.Id);
-                harmony.PatchAll(Assembly.GetExecutingAssembly());
-            }
-            catch (Exception ex)
-            {
-                Error(ex);
-                throw;
-            }
+            Settings = Settings.Load<Settings>(modEntry);
+            modEntry.OnToggle = OnToggle;
+            modEntry.OnGUI = OnGUI;
+            modEntry.OnSaveGUI = OnSaveGUI;
 
             return true;
         }
 
+        static bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
+        {
+            Enabled = true;
+
+            return true;
+        }
+
+        static void OnGUI(UnityModManager.ModEntry modEntry)
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Dialogue GUID:", ModKit.UI.AutoWidth());
+            GUILayout.Space(10f);
+            GUILayout.TextField(Settings.dialogueGUID, GUILayout.Width(3000f));
+            GUILayout.EndHorizontal();
+        }
+
+        static void OnSaveGUI(UnityModManager.ModEntry modEntry)
+        {
+            Settings.Save(modEntry);
+        }
 
     }
 }
