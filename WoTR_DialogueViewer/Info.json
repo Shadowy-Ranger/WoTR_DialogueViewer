@@ -1,0 +1,13 @@
+{
+	"Id": "WoTR_DialogueViewer",
+	"DisplayName": "WoTR_DialogueViewer",
+	"Author": "Shadowy-Ranger",
+	"Version": "0.0.1",
+	"ManagerVersion": "0.23.3",
+	"Requirements": [],
+	"AssemblyName": "WoTR_DialogueViewer.dll",
+	"EntryMethod": "WoTR_DialogueViewer.Main.Load",
+	"Repository": "https://raw.githubusercontent.com/Shadowy-Ranger/WoTR_DialogueViewer/main/WoTR_DialogueViewer/Repository.json",
+	"HomePage": "https://www.nexusmods.com/pathfinderwrathoftherighteous/mods/##"
+}
+
