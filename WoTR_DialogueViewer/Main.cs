@@ -1,5 +1,6 @@
 using UnityModManagerNet;
 using UnityEngine;
+using ModKit;
 
 namespace WoTR_DialogueViewer
 {
@@ -30,9 +31,9 @@ namespace WoTR_DialogueViewer
         static void OnGUI(UnityModManager.ModEntry modEntry)
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Dialogue GUID:", ModKit.UI.AutoWidth());
+            GUILayout.Label("Dialogue GUID:", UI.AutoWidth());
             GUILayout.Space(10f);
-            GUILayout.TextField(Settings.dialogueGUID, GUILayout.Width(3000f));
+            GUILayout.TextField(Settings.dialogueGUID, UI.AutoWidth(), GUILayout.Width(300f));
             GUILayout.EndHorizontal();
         }
 
