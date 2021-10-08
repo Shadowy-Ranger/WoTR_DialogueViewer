@@ -34,6 +34,8 @@ namespace WoTR_DialogueViewer
 
             return true;
         }
+
+
     }
 }
 
