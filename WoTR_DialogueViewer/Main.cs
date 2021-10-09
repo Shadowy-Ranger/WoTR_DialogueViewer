@@ -35,6 +35,8 @@ namespace WoTR_DialogueViewer
             GUILayout.Space(10f);
             GUILayout.TextField(Settings.dialogueGUID, UI.AutoWidth(), GUILayout.Width(300f));
             GUILayout.EndHorizontal();
+
+
         }
 
         static void OnSaveGUI(UnityModManager.ModEntry modEntry)
