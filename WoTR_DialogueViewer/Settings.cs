@@ -9,7 +9,9 @@ namespace WoTR_DialogueViewer
 {
     public class Settings : UnityModManager.ModSettings
     {
-        public string dialogueGUID = "";        
+        // DialogueSearch
+        public string dialogueGUID = "";
+        public bool searchResults = false;
 
         public override void Save(UnityModManager.ModEntry modEntry)
         {

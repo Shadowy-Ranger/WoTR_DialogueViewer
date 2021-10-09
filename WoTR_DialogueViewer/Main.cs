@@ -1,6 +1,7 @@
 using UnityModManagerNet;
 using UnityEngine;
 using ModKit;
+using static ModKit.UI;
 
 namespace WoTR_DialogueViewer
 {
@@ -9,11 +10,11 @@ namespace WoTR_DialogueViewer
 #endif  
     public class Main
     {
-        public static Settings Settings;
-        public static bool Enabled;
+        public static Settings settings;
+        public static bool enabled;
         static bool Load(UnityModManager.ModEntry modEntry)
         {
-            Settings = Settings.Load<Settings>(modEntry);
+            settings = Settings.Load<Settings>(modEntry);
             modEntry.OnToggle = OnToggle;
             modEntry.OnGUI = OnGUI;
             modEntry.OnSaveGUI = OnSaveGUI;
@@ -23,25 +24,27 @@ namespace WoTR_DialogueViewer
 
         static bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
         {
-            Enabled = true;
+            enabled = true;
 
             return true;
         }
 
         static void OnGUI(UnityModManager.ModEntry modEntry)
         {
-            GUILayout.BeginHorizontal();
-            GUILayout.Label("Dialogue GUID:", UI.AutoWidth());
-            GUILayout.Space(10f);
-            GUILayout.TextField(Settings.dialogueGUID, UI.AutoWidth(), GUILayout.Width(300f));
-            GUILayout.EndHorizontal();
+            BeginHorizontal();
+            Label("Dialogue GUID:", UI.AutoWidth());
+            Space(10f);
+            TextField(ref settings.dialogueGUID, "dialogueGUID", AutoWidth(), Width(300f));
+            Space(10f);
+            ActionButton("Search", () => DialogueSearch.FindDialogue(settings.dialogueGUID), AutoWidth(), Width(100f));
+            EndHorizontal();
 
-
+            DialogueSearch.onGUI();
         }
 
         static void OnSaveGUI(UnityModManager.ModEntry modEntry)
         {
-            Settings.Save(modEntry);
+            settings.Save(modEntry);
         }
 
     }

@@ -63,7 +63,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		
+
+<Reference Include="Assembly-CSharp">
+	<HintPath>$(SolutionDir)lib\Assembly-CSharp_public.dll</HintPath>
+	<Private>False</Private>
+</Reference>		
 <Reference Include="Owlcat.Runtime.Core.dll">
 	<HintPath>$([System.IO.Path]::Combine($(WrathInstallDir), 'Wrath_Data\Managed\Owlcat.Runtime.Core.dll'))</HintPath>
 	<Private>false</Private>
