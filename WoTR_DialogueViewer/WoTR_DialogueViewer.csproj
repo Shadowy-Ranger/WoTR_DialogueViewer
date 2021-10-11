@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk" InitialTargets="CheckEnvironmentVars">
-
+﻿<Project Sdk="Microsoft.NET.Sdk" InitialTargets="CheckEnvironmentVars">
 	<PropertyGroup>
 		<TargetFramework>net472</TargetFramework>
 		<AssemblyVersion>0.0.2.0</AssemblyVersion>
@@ -9,7 +8,7 @@
 		<RepositoryUrl>https://github.com/Shadowy-Ranger/WoTR_DialogueViewer</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<Configurations>Debug;Release;Debug Install;Release Install</Configurations>
-		<Authors>Zappastuff</Authors>
+		<Authors>ShadowRanger</Authors>
 		<Company />
 		<Product />
 		<Copyright>Copyright 2021</Copyright>
@@ -50,14 +49,25 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug Install|AnyCPU'">
 		<Optimize>false</Optimize>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<DebugType>portable</DebugType>
+		<DebugSymbols>true</DebugSymbols>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 		<DefineConstants>TRACE</DefineConstants>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <OutputPath>D:\WrathModding\Pathfinder Second Adventure\Mods\0DialogueViewer0\</OutputPath>
+	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
 	<ItemGroup>
-		
+
+<Reference Include="Assembly-CSharp">
+	<HintPath>$(SolutionDir)lib\Assembly-CSharp_public.dll</HintPath>
+	<Private>False</Private>
+</Reference>		
 <Reference Include="Owlcat.Runtime.Core.dll">
 	<HintPath>$([System.IO.Path]::Combine($(WrathInstallDir), 'Wrath_Data\Managed\Owlcat.Runtime.Core.dll'))</HintPath>
 	<Private>false</Private>
@@ -428,7 +438,7 @@
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="ModKit" Version="1.0.7" />
+		<PackageReference Include="ModKit" Version="1.0.8" />
 		<None Update="Info.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
