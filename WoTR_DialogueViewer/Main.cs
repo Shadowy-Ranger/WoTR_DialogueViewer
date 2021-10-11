@@ -36,7 +36,7 @@ namespace WoTR_DialogueViewer
             Space(10f);
             TextField(ref settings.dialogueGUID, "dialogueGUID", AutoWidth(), Width(300f));
             Space(10f);
-            ActionButton("Search", () => DialogueSearch.FindDialogue(settings.dialogueGUID), AutoWidth(), Width(100f));
+            ActionButton("Search", () => DialogueSearch.FindDialog(settings.dialogueGUID), AutoWidth(), Width(100f));
             EndHorizontal();
 
             DialogueSearch.onGUI();
